@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,73 @@ namespace SteganographyDemo
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void FindMsg_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void HideMsg_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void LoadImage_Click(object sender, RoutedEventArgs e)
+        {
+            var openDialog = new OpenFileDialog();
+            openDialog.FileName = "Msg";
+            openDialog.DefaultExt = ".png";
+            openDialog.Filter = "Image files (*.png)| *.*";
+            openDialog.FilterIndex = 0;
+            if (openDialog.ShowDialog() == true)
+            {
+                var bitmapImage = new BitmapImage();
+                bitmapImage.BeginInit();
+                bitmapImage.UriSource = new Uri(openDialog.FileName, UriKind.Absolute);
+                bitmapImage.EndInit();
+                var buttonName = (sender as Button).Name;
+                if (buttonName == "LoadModifiedMsg")
+                    ModifiedImage.Source = bitmapImage;
+                else if (buttonName == "LoadOriginalMsg")
+                    OriginalImage.Source = bitmapImage;
+                else if (buttonName == "LoadContent")
+                    ContentImage.Source = bitmapImage;
+            }
+        }
+
+        private void SaveImage_Click(object sender, RoutedEventArgs e)
+        {
+            var senderName = (sender as Button).Name;
+            ImageSource targetImageSource = null;
+            if (senderName == "SaveModifiedMsg")
+                targetImageSource = ModifiedImage.Source;
+            else if (senderName == "SaveContent")
+                targetImageSource = ContentImage.Source;
+
+            var saveDialogue = new SaveFileDialog();
+            saveDialogue.FileName = "Msg";
+            saveDialogue.DefaultExt = ".png";
+            saveDialogue.Filter = "Image files (*.png)| *.*";
+            saveDialogue.FilterIndex = 0;
+            if (saveDialogue.ShowDialog() == true)
+            {
+                using (var stream = saveDialogue.OpenFile())
+                {
+                    if (stream != null)
+                    {
+                        var bitmap = targetImageSource as BitmapImage;
+                        var encoder = new PngBitmapEncoder();
+                        encoder.Frames.Add(BitmapFrame.Create(bitmap));
+                        encoder.Save(stream);
+                        MessageBox.Show("The image has been saved correctly");
+                    }
+                    else
+                    {
+                        MessageBox.Show("the stream equals null");
+                    }
+                }
+            }
         }
     }
 }

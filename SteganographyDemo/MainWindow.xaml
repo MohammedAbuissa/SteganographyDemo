@@ -5,8 +5,31 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SteganographyDemo"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="528.661" Width="696.339">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Image x:Name="OriginalImage" Margin="74,10,75,18" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        <Image x:Name="ModifiedImage" Margin="74,18,75,10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1"/>
+        <Image x:Name="ContentImage" Margin="74,18,75,10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="2"/>
+        <TextBlock x:Name="textBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Original Msg" VerticalAlignment="Top" Height="35" Width="123" FontSize="20"/>
+        <TextBlock x:Name="textBlock_Copy" Grid.Column="1" HorizontalAlignment="Left" Margin="10,12,0,0" TextWrapping="Wrap" Text="Modified Msg" VerticalAlignment="Top" Height="35" Width="123" FontSize="18" Grid.Row="1"/>
+        <TextBlock x:Name="textBlock_Copy1" Grid.Column="1" HorizontalAlignment="Left" Margin="10,18,0,0" TextWrapping="Wrap" Text="Content" VerticalAlignment="Top" Height="35" Width="123" FontSize="24" Grid.Row="2"/>
+        <Button x:Name="LoadOriginalMsg" Content="Load" HorizontalAlignment="Left" VerticalAlignment="Top" Width="123" Grid.Column="1" Margin="10,81,0,0" Height="38" Click="LoadImage_Click"/>
+        <Button x:Name="LoadContent" Content="Load" HorizontalAlignment="Left" VerticalAlignment="Top" Width="123" Grid.Column="1" Margin="10,65,0,0" Height="38" Grid.Row="2" Click="LoadImage_Click"/>
+        <Button x:Name="SaveModifiedMsg" Content="Save" HorizontalAlignment="Left" VerticalAlignment="Top" Width="123" Grid.Column="1" Margin="10,118,0,0" Height="38" Grid.Row="1" Click="SaveImage_Click"/>
+        <Button x:Name="LoadModifiedMsg" Content="Load" HorizontalAlignment="Left" VerticalAlignment="Top" Width="123" Grid.Column="1" Margin="10,52,0,0" Height="38" Grid.Row="1" Click="LoadImage_Click"/>
+        <Button x:Name="HideMsg" Content="Hide" HorizontalAlignment="Left" VerticalAlignment="Top" Width="123" Grid.Column="2" Margin="25,28,0,0" Height="38" Grid.Row="1" Click="HideMsg_Click"/>
+        <Button x:Name="FindMsg" Content="Find" HorizontalAlignment="Left" VerticalAlignment="Top" Width="123" Grid.Column="2" Margin="25,95,0,0" Height="38" Grid.Row="1" Click="FindMsg_Click"/>
+        <Button x:Name="SaveContent" Content="Save" HorizontalAlignment="Left" VerticalAlignment="Top" Width="123" Grid.Column="1" Margin="10,116,0,0" Height="38" Grid.Row="2" Click="SaveImage_Click"/>
+
     </Grid>
 </Window>
