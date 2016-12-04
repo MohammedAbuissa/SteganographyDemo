@@ -28,12 +28,14 @@ namespace SteganographyDemo
 
         private void FindMsg_Click(object sender, RoutedEventArgs e)
         {
-
+            var s = new PngSteganography();
+            ContentImage.Source = s.Find(ModifiedImage.Source as BitmapImage);
         }
 
         private void HideMsg_Click(object sender, RoutedEventArgs e)
         {
-
+            var s = new PngSteganography();
+            ModifiedImage.Source = s.Hide(ContentImage.Source as BitmapSource, OriginalImage.Source as BitmapImage);
         }
 
         private void LoadImage_Click(object sender, RoutedEventArgs e)
@@ -79,7 +81,7 @@ namespace SteganographyDemo
                 {
                     if (stream != null)
                     {
-                        var bitmap = targetImageSource as BitmapImage;
+                        var bitmap = targetImageSource as BitmapSource;
                         var encoder = new PngBitmapEncoder();
                         encoder.Frames.Add(BitmapFrame.Create(bitmap));
                         encoder.Save(stream);
