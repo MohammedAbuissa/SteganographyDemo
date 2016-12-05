@@ -16,6 +16,8 @@ namespace SteganographyDemo
 
         public BitmapSource Find(BitmapSource ModifiedMsg)
         {
+            if (ModifiedMsg == null)
+                throw new ArgumentNullException($"{nameof(ModifiedMsg)} can't be null");
             var height = ModifiedMsg.PixelHeight;
             var width = ModifiedMsg.PixelWidth;
             var bytesPerPixel = 3;
@@ -114,6 +116,10 @@ namespace SteganographyDemo
 
         public BitmapSource Hide(BitmapSource Content, BitmapSource OriginalMsg)
         {
+            if (Content == null)
+                throw new ArgumentNullException($"{nameof(Content)} can't be null");
+            if (OriginalMsg == null)
+                throw new ArgumentNullException($"{nameof(OriginalMsg)} can't be null");
             var height = OriginalMsg.PixelHeight;
             var width = OriginalMsg.PixelWidth;
             var bytesPerPixel = 3;

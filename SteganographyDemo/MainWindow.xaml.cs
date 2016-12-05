@@ -29,13 +29,29 @@ namespace SteganographyDemo
         private void FindMsg_Click(object sender, RoutedEventArgs e)
         {
             var s = new PngSteganography();
-            ContentImage.Source = s.Find(ModifiedImage.Source as BitmapSource);
+            try
+            {
+                ContentImage.Source = s.Find(ModifiedImage.Source as BitmapSource);
+            }
+            catch (ArgumentNullException exp)
+            {
+                MessageBox.Show(exp.Message);
+            }
+            
         }
 
         private void HideMsg_Click(object sender, RoutedEventArgs e)
         {
             var s = new PngSteganography();
-            ModifiedImage.Source = s.Hide(ContentImage.Source as BitmapSource, OriginalImage.Source as BitmapSource);
+            try
+            {
+                ModifiedImage.Source = s.Hide(ContentImage.Source as BitmapSource, OriginalImage.Source as BitmapSource);
+            }
+            catch (ArgumentNullException exp)
+            {
+                MessageBox.Show(exp.Message);
+            }
+           
         }
 
         private void LoadImage_Click(object sender, RoutedEventArgs e)
